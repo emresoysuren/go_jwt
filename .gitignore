@@ -47,3 +47,6 @@ go.work
 
 # Private
 *.env
+
+# Vendor
+vendor/
