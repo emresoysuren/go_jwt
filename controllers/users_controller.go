@@ -126,3 +126,20 @@ func Login(c *gin.Context) {
 		"token": tokenString,
 	})
 }
+
+func Validate(c *gin.Context) {
+	value, ok := c.Get("user")
+	var user models.User
+	if ok {
+		user, ok = value.(models.User)
+		if !ok {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": "Couldn't find the current session.",
+			})
+			return
+		}
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": user,
+	})
+}
